@@ -9,7 +9,8 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi (>=0.142.2,<0.143.0)",
     "uvicorn[standard] (>=0.54.0,<0.55.0)",
-    "py-ulid (>=1.0.3,<2.0.0)"
+    "py-ulid (>=1.0.3,<2.0.0)",
+    "passlib[bcrypt] (>=1.7.4,<2.0.0)"
 ]
 
 
