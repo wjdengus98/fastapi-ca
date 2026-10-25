@@ -1,9 +1,9 @@
 from fastapi import HTTPException
 from ulid import ULID
 from datetime import datetime
-from user.domain.user import User
-from user.domain.repository.user_repo import IUserRepository
-from user.infra.repository.user_repo import UserRepository
+from users.domain.user import User
+from users.domain.repository.user_repo import IUserRepository
+from users.infra.repository.user_repo import UserRepository
 from utils.crypto import Crypto
 
 class UserService:
