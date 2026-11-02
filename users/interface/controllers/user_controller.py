@@ -12,6 +12,7 @@ class CreateUserBody(BaseModel):
     name: str
     email: str
     password: str
+    memo: str | None = None
 
 
 @router.post("", status_code=201)
@@ -25,6 +26,7 @@ def create_user(
         name=user.name,
         email=user.email,
         password=user.password,
+        memo=user.memo,
     )
 
     return created_user

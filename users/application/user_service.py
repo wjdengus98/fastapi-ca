@@ -16,7 +16,13 @@ class UserService:
         self.ulid = ULID()
         self.crypto = Crypto()
 
-    def create_user(self, name: str, email: str, password: str):
+    def create_user(
+        self,
+        name: str,
+        email: str,
+        password: str,
+        memo: str | None = None,
+    ):
         _user = None
         try:
             _user = self.user_repo.find_by_email(email)
@@ -33,6 +39,7 @@ class UserService:
             name=name,
             email=email,
             password=self.crypto.encrypt(password),
+            memo=memo,
             created_at=now,
             updated_at=now,
         )
