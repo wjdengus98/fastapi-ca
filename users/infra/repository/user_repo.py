@@ -32,3 +32,26 @@ class UserRepository(IUserRepository):
             raise HTTPException(status_code=422)
 
         return UserV0(**row_to_dict(user))
+
+    def find_by_id(self, user_id: str) -> UserV0:
+        with SessionLocal() as db:
+            user = db.query(User).filter(User.id == user_id).first()
+
+        if not user:
+            raise HTTPException(status_code=422)
+
+        return UserV0(**row_to_dict(user))
+
+    def update(self, user_vo: UserV0) -> None:
+        with SessionLocal() as db:
+            user = db.query(User).filter(User.id == user_vo.id).first()
+
+            if not user:
+                raise HTTPException(status_code=422)
+
+            user.name = user_vo.name
+            user.password = user_vo.password
+            user.memo = user_vo.memo
+            user.updated_at = user_vo.updated_at
+
+            db.commit()
