@@ -53,5 +53,10 @@ class UserRepository(IUserRepository):
             user.password = user_vo.password
             user.memo = user_vo.memo
             user.updated_at = user_vo.updated_at
-
             db.commit()
+
+    def get_users(self) -> list[UserV0]:
+        with SessionLocal() as db:
+            users = db.query(User).all()
+
+        return [UserV0(**row_to_dict(user)) for user in users]
